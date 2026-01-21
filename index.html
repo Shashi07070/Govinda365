@@ -4,107 +4,159 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Govindaa365 – Official Exchange</title>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@400;500;600&display=swap');
     *{box-sizing:border-box}
     body{
       margin:0;
       font-family:'Poppins',sans-serif;
-      background:radial-gradient(circle at top,#0f1f22,#070d0f 70%);
-      color:#f4f4f4;
+      background:radial-gradient(circle at top,#141414,#050505 70%);
+      color:#f5f5f5;
     }
-    .container{max-width:420px;margin:auto;padding:18px}
-    .topbar{display:flex;gap:10px;margin-bottom:16px}
-    .topbar a{flex:1;text-align:center;text-decoration:none;padding:12px;border-radius:14px;font-weight:600;font-size:.85rem;background:linear-gradient(135deg,#b8860b,#ffd36a);color:#000;box-shadow:0 6px 18px rgba(184,134,11,.35)}
-    .hero{
-      text-align:center;
-      padding:42px 18px;
-      background:linear-gradient(180deg,#0b1416,#050a0c);
-      border-radius:22px;
-      border:1px solid #1f2f33;
-      box-shadow:0 25px 60px rgba(0,0,0,.75)
-    }
-    .hero img{width:140px;max-width:55%;margin-bottom:14px}
-    .badge{display:inline-block;background:linear-gradient(90deg,#caa23a,#ffe08a);color:#000;padding:6px 14px;border-radius:50px;font-size:.75rem;font-weight:600;margin:6px 0}
-    .hero h1{font-family:'Playfair Display',serif;font-size:1.6rem;margin:14px 0;color:#e6c26a}
-    .hero h2{font-size:.95rem;color:#caa23a;margin-bottom:18px}
-    .btn{width:100%;display:flex;align-items:center;justify-content:center;gap:10px;padding:14px;margin:12px 0;border-radius:16px;text-decoration:none;font-weight:600;font-size:.95rem}
-    .btn-primary{background:linear-gradient(90deg,#caa23a,#ffe08a);color:#000}
-    .btn-whatsapp{background:#25d366;color:#000}
-    .section{margin-top:26px}
-    .card{background:linear-gradient(180deg,#0e1a1d,#081114);border-radius:18px;padding:20px;margin-bottom:18px;border:1px solid #1f2f33}
-    .card h3{font-family:'Playfair Display',serif;font-size:1.05rem;margin-bottom:12px;color:#e6c26a}
-    .list{list-style:none;padding:0;margin:0}
-    .list li{display:flex;align-items:center;gap:10px;margin:10px 0;font-size:.9rem;color:#e0d8c0}
-    .list i{color:#caa23a}
-    .links a{display:flex;align-items:center;gap:10px;text-decoration:none;background:linear-gradient(180deg,#0f1c1f,#091316);padding:14px;border-radius:14px;margin-bottom:12px;color:#f5f5f5;font-size:.9rem;border:1px solid #1f2f33}
-    .links i{color:#e6c26a;font-size:1.1rem}
-    .disclaimer{margin-top:24px;font-size:.75rem;line-height:1.6;color:#e0d8c0;background:#0b1416;padding:18px;border-radius:18px;border:1px solid #1f2f33}
-    footer{text-align:center;margin-top:18px;font-size:.7rem;color:#caa23a}
-  .social-icons{display:flex;gap:16px;justify-content:center;margin:28px 0}
-.social-icons a{width:52px;height:52px;display:flex;align-items:center;justify-content:center;border-radius:50%;font-size:22px;color:#fff;transition:0.3s}
-.social-icons a.whatsapp{background:#25D366;box-shadow:0 0 14px rgba(37,211,102,.8)}
-.social-icons a.telegram{background:#229ED9;box-shadow:0 0 14px rgba(34,158,217,.8)}
-.social-icons a.instagram{background:radial-gradient(circle at 30% 107%,#fdf497 0%,#fdf497 5%,#fd5949 45%,#d6249f 60%,#285AEB 90%);box-shadow:0 0 16px rgba(214,36,159,.7)}
-.social-icons a:hover{transform:translateY(-4px);filter:brightness(1.1)}</style>
+    .container{max-width:420px;margin:auto;padding:18px}/* HERO */
+.hero{
+  text-align:center;
+  padding:36px 18px;
+  border-radius:20px;
+  background:linear-gradient(180deg,#1b1208,#0b0703);
+  border:1px solid rgba(212,175,55,.25);
+  box-shadow:0 20px 45px rgba(0,0,0,.7);
+}
+.logo{
+  width:140px;
+  display:block;
+  margin:0 auto 14px;
+  filter:drop-shadow(0 0 20px rgba(212,175,55,.6));
+}
+.badge{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  background:linear-gradient(90deg,#c9a24d,#f1d27a);
+  color:#000;
+  padding:6px 14px;
+  border-radius:50px;
+  font-size:.75rem;
+  font-weight:600;
+  margin-bottom:14px;
+}
+h1{
+  font-family:'Playfair Display',serif;
+  font-size:1.8rem;
+  margin:10px 0;
+  color:#e6c87a;
+  letter-spacing:1px;
+}
+h2{
+  font-size:.95rem;
+  color:#d2b36a;
+  margin-bottom:22px;
+}
+
+.btn{
+  width:100%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  padding:15px;
+  margin:12px 0;
+  border-radius:16px;
+  text-decoration:none;
+  font-weight:600;
+  font-size:.95rem;
+}
+.btn-primary{
+  background:linear-gradient(90deg,#c9a24d,#f1d27a);
+  color:#000;
+  box-shadow:0 10px 25px rgba(212,175,55,.45);
+}
+.btn-wa{
+  background:#25D366;
+  color:#fff;
+  box-shadow:0 10px 25px rgba(37,211,102,.45);
+}
+.btn-tg{
+  background:#229ED9;
+  color:#fff;
+  box-shadow:0 10px 25px rgba(34,158,217,.45);
+}
+
+/* SECTIONS */
+.section{margin-top:22px}
+.card{
+  background:linear-gradient(180deg,#141414,#0c0c0c);
+  border-radius:18px;
+  padding:20px;
+  margin-bottom:18px;
+  border:1px solid rgba(212,175,55,.18);
+  box-shadow:0 15px 35px rgba(0,0,0,.6);
+}
+.card h3{
+  font-family:'Playfair Display',serif;
+  font-size:1.05rem;
+  margin-bottom:14px;
+  color:#e6c87a;
+}
+.list{list-style:none;padding:0;margin:0}
+.list li{
+  display:flex;
+  gap:10px;
+  margin:10px 0;
+  font-size:.9rem;
+  color:#e0c37a;
+}
+.list i{color:#c9a24d}
+
+.disclaimer{
+  margin-top:22px;
+  font-size:.75rem;
+  line-height:1.6;
+  color:#d2b36a;
+  background:linear-gradient(180deg,#120c06,#080503);
+  padding:18px;
+  border-radius:18px;
+  border:1px solid rgba(212,175,55,.25);
+}
+footer{
+  text-align:center;
+  margin-top:18px;
+  font-size:.7rem;
+  color:#c9a24d;
+}
+
+  </style>
 </head>
 <body>
-  <div class="container"><div class="topbar" style="justify-content:center;">
-  <a href="https://wa.link/govindaa365" style="background:linear-gradient(135deg,#25D366,#128C7E);box-shadow:0 0 18px rgba(37,211,102,.45)"><i class="fa-brands fa-whatsapp"></i> WhatsApp ID</a>
-  <a href="https://t.me/+geOjl2jUdhI1ZTE1" style="background:linear-gradient(135deg,#229ED9,#1c7bb6);box-shadow:0 0 18px rgba(34,158,217,.45)"><i class="fa-brands fa-telegram"></i> Telegram</a>
-</div>
+  <div class="container"><section class="hero">
+  <img src="govindaa365.png" alt="Govindaa365 Logo" class="logo">
+  <div class="badge"><i class="fa-solid fa-trophy"></i> ALL MATCHES AVAILABLE</div>
+  <h1>GOVINDAA365</h1>
+  <h2>Your Trusted Cricket & Casino Exchange</h2>
 
-<section class="hero" style="text-align:center;background:linear-gradient(180deg,#120a05,#1b120a);border:1px solid #3a2716;">
-  <img src="govindaa-logo.png" alt="Govindaa365 Logo" style="width:130px;margin:0 auto 16px;display:block;" />
-  <div class="badge" style="margin:0 auto 14px;display:block;width:max-content;">🏆 ALL MATCHES AVAILABLE</div>
-  <h1 style="color:#e6c27a;">GOVINDAA365</h1>
-  <h2 style="color:#bfa15c;">Your Trusted Cricket & Casino Exchange</h2>
-  <a href="http://www.govindaa365.co" class="btn btn-primary">⚡ Register & Play Now</a>
-  <a href="https://wa.link/govindaa365" class="btn" style="background:linear-gradient(90deg,#25D366,#128C7E);color:#fff;box-shadow:0 0 22px rgba(37,211,102,.45)"><i class="fa-brands fa-whatsapp"></i> Get ID on WhatsApp</a>
-  <a href="https://t.me/+geOjl2jUdhI1ZTE1" class="btn" style="background:linear-gradient(90deg,#229ED9,#1c7bb6);color:#fff;box-shadow:0 0 22px rgba(34,158,217,.45)"><i class="fa-brands fa-telegram"></i> Get ID on Telegram</a>
+  <a href="http://www.govindaa365.co" class="btn btn-primary"><i class="fa-solid fa-bolt"></i> Register & Play Now</a>
+  <a href="https://wa.link/govindaa365" class="btn btn-wa"><i class="fa-brands fa-whatsapp"></i> Get ID on WhatsApp</a>
+  <a href="https://t.me/+geOjl2jUdhI1ZTE1" class="btn btn-tg"><i class="fa-brands fa-telegram"></i> Get ID on Telegram</a>
 </section>
 
 <section class="section">
   <div class="card">
-    <h3><i class="fa-solid fa-cricket-bat-ball"></i> Cricket Markets</h3>
+    <h3><i class="fa-solid fa-chart-line"></i> Cricket Markets</h3>
     <ul class="list">
       <li><i class="fa-solid fa-check"></i> All Leagues – IPL, TNPL, The Hundred</li>
       <li><i class="fa-solid fa-check"></i> Toss Bets • Match Bets</li>
       <li><i class="fa-solid fa-check"></i> Session & Fancy Bets</li>
-    </ul>
-  </div>
-
-  <div class="card">
-    <h3><i class="fa-solid fa-dice"></i> Casino Games</h3>
-    <ul class="list">
-      <li><i class="fa-solid fa-check"></i> 300+ Casino Games</li>
-      <li><i class="fa-solid fa-check"></i> Mines • Aviator • Tower</li>
-      <li><i class="fa-solid fa-check"></i> Smooth Gameplay & Fast Results</li>
-    </ul>
-  </div>
-
-  <div class="card">
-    <h3><i class="fa-solid fa-wallet"></i> Platform Features</h3>
-    <ul class="list">
-      <li><i class="fa-solid fa-check"></i> Instant Cashout Available</li>
-      <li><i class="fa-solid fa-check"></i> Daily Matches & Regular Offers</li>
-      <li><i class="fa-solid fa-check"></i> Trusted & Secure Platform</li>
+      <li><i class="fa-solid fa-check"></i> Cashout Feature Available</li>
     </ul>
   </div>
 </section>
 
-<section class="section links">
-  <a href="http://www.govindaa365.co"><i class="fa-solid fa-globe"></i> Official Website</a>
-  <a href="https://t.me/+geOjl2jUdhI1ZTE1"><i class="fa-brands fa-telegram"></i> Telegram Channel</a>
-  <a href="https://www.instagram.com/govindaa365.co"><i class="fa-brands fa-instagram"></i> Instagram Page</a>
-<section class="social-icons">
+<section class="disclaimer">
+  <strong>Disclaimer & Age Restriction</strong><br><br>
+  This platform is strictly for users aged <strong>18 years and above</strong>. Under‑18 users are not allowed. Online betting involves financial risk and may be addictive. Please play responsibly.
+</section>
 
-<a href="https://wa.link/govindaa365" class="whatsapp"><i class="fa-brands fa-whatsapp"></i></a> <a href="https://t.me/+geOjl2jUdhI1ZTE1" class="telegram"><i class="fa-brands fa-telegram"></i></a> <a href="https://www.instagram.com/govindaa365.co" class="instagram"><i class="fa-brands fa-instagram"></i></a>
-
-</section><section class="disclaimer">
-      <strong>Disclaimer & Age Restriction:</strong><br><br>
-      This platform is strictly for users aged <strong>18+</strong>. Under-18 participation is not allowed. Online betting involves financial risk and can be addictive. Please play responsibly. Govindaa365 operates as an online exchange platform only.
-    </section><footer>
+<footer>
   © 2025 Govindaa365 • Play Responsibly
 </footer>
 
