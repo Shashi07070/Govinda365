@@ -114,6 +114,19 @@
 
         .download-btn:hover { background-color: #218838; }
 
+        .reset-btn {
+            width: 100%;
+            padding: 10px;
+            background-color: #f8f9fa;
+            color: #333;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
         /* =========================================
            PREVIEW AREA (RIGHT SIDE) - 9:16 RATIO
            ========================================= */
@@ -197,12 +210,11 @@
             position: relative;
         }
 
-        /* --- FIXED POSTER SIZE --- */
         .poster {
             width: 75px;
             height: 105px;
             border-radius: 8px;
-            flex-shrink: 0; /* Prevents flexbox from shrinking it */
+            flex-shrink: 0;
             position: relative;
             background-color: #300;
             overflow: hidden;
@@ -211,7 +223,7 @@
         .poster img {
             width: 100%;
             height: 100%;
-            object-fit: cover; /* This ensures uploaded images fit perfectly without stretching */
+            object-fit: cover;
             display: block;
         }
 
@@ -236,18 +248,36 @@
             flex-direction: column;
             gap: 4px;
             padding-right: 20px;
+            width: 100%;
         }
 
+        /* Editable Text Styles */
         .movie-title {
             font-size: 16px;
             font-weight: 700;
             color: var(--text-main);
+            outline: none;
+            border: 1px dashed transparent;
+            transition: border-color 0.2s;
+        }
+
+        .movie-title:hover, .movie-title:focus {
+            border-color: #999;
+            background-color: rgba(0,0,0,0.02);
         }
 
         .movie-details {
             font-size: 12px;
             color: var(--text-secondary);
             line-height: 1.4;
+            outline: none;
+            border: 1px dashed transparent;
+            transition: border-color 0.2s;
+        }
+
+        .movie-details:hover, .movie-details:focus {
+            border-color: #999;
+            background-color: rgba(0,0,0,0.02);
         }
 
         .side-text {
@@ -415,17 +445,8 @@
         <h2>🛠️ Edit Dashboard</h2>
         
         <div class="control-group">
-            <h3>Ticket Info</h3>
-            <div class="input-row">
-                <label>Movie Title</label>
-                <input type="text" id="edit-title" value="itllu Arjuna" oninput="updateText('preview-title', this.value)">
-            </div>
-            <div class="input-row">
-                <label>Movie Details</label>
-                <textarea id="edit-details" oninput="updateText('preview-details', this.value)">Telugu, 2D<br>Fri, 13 Sep | 11:00 AM<br>Sree Ramana Gold 4k Dolby 7.1,Amberpet, Hyderabad</textarea>
-            </div>
-            
-            <!-- NEW UPLOAD SECTION -->
+            <h3>Movie Info</h3>
+            <!-- NOTE: You can also click directly on the text in the right panel to edit it! -->
             <div class="input-row">
                 <label>Upload Movie Image (Auto-resizes)</label>
                 <input type="file" id="upload-poster" accept="image/*" onchange="handleImageUpload(event)">
@@ -435,20 +456,8 @@
         <div class="control-group">
             <h3>Seat & Booking Details</h3>
             <div class="input-row">
-                <label>Seat Name</label>
-                <input type="text" id="edit-seat" value="SREE RAMANA GOLD 4K" oninput="updateText('preview-seat', this.value)">
-            </div>
-            <div class="input-row">
-                <label>Seat Type</label>
-                <input type="text" id="edit-seat-type" value="BALCONY-F-20 - 21" oninput="updateText('preview-seat-type', this.value)">
-            </div>
-            <div class="input-row">
                 <label>Booking ID (Also updates QR)</label>
                 <input type="text" id="edit-booking" value="WMD5XTQ" oninput="updateBooking(this.value)">
-            </div>
-            <div class="input-row">
-                <label>Total Amount</label>
-                <input type="text" id="edit-amount" value="₹ 349.56" oninput="updateText('preview-amount', this.value)">
             </div>
         </div>
 
@@ -464,8 +473,9 @@
             </div>
         </div>
 
-        <!-- DOWNLOAD BUTTON -->
+        <!-- BUTTONS -->
         <button class="download-btn" onclick="downloadImage()">📥 Download as Image</button>
+        <button class="reset-btn" onclick="resetText()">↺ Reset Text</button>
     </div>
 
     <!-- =========================================
@@ -488,7 +498,6 @@
                 <div class="ticket-card">
                     <div class="ticket-top">
                         <div class="poster">
-                            <!-- Default image source -->
                             <img id="preview-poster" src="https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?q=80&w=200&auto=format&fit=crop" alt="Movie Poster" crossorigin="anonymous">
                             <div class="poster-overlay">
                                 <svg width="8" height="8" viewBox="0 0 24 24" fill="white"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
@@ -497,8 +506,9 @@
                         </div>
                         
                         <div class="movie-info">
-                            <div class="movie-title" id="preview-title">itllu Arjuna</div>
-                            <div class="movie-details" id="preview-details">
+                            <!-- Added contenteditable="true" to make them type-able directly in the preview -->
+                            <div class="movie-title" id="preview-title" contenteditable="true" spellcheck="false">itllu Arjuna</div>
+                            <div class="movie-details" id="preview-details" contenteditable="true" spellcheck="false">
                                 Telugu, 2D<br>
                                 Fri, 13 Sep | 11:00 AM<br>
                                 Sree Ramana Gold 4k Dolby 7.1,Amberpet, Hyderabad
@@ -518,8 +528,8 @@
                         
                         <div class="seat-info">
                             <div class="ticket-count">1 Ticket(s)</div>
-                            <div class="seat-name" id="preview-seat">SREE RAMANA GOLD 4K</div>
-                            <div class="seat-type" id="preview-seat-type">BALCONY-F-20 - 21</div>
+                            <div class="seat-name">SREE RAMANA GOLD 4K</div>
+                            <div class="seat-type">BALCONY-F-20 - 21</div>
                             <div class="booking-id" id="preview-booking">BOOKING ID: WMD5XTQ</div>
                         </div>
                     </div>
@@ -528,7 +538,7 @@
 
                     <div class="ticket-bottom">
                         <span>Total Amount</span>
-                        <span class="total-amount" id="preview-amount">₹ 349.56</span>
+                        <span class="total-amount">₹ 349.56</span>
                     </div>
                 </div>
 
@@ -561,25 +571,12 @@
          JAVASCRIPT LOGIC
          ========================================= -->
     <script>
-        // Update standard text elements
-        function updateText(elementId, newText) {
-            const element = document.getElementById(elementId);
-            if (element) {
-                if (newText.includes('<br>')) {
-                    element.innerHTML = newText;
-                } else {
-                    element.innerText = newText;
-                }
-            }
-        }
-
         // Handle File Upload for Poster
         function handleImageUpload(event) {
             const file = event.target.files[0];
             if (file) {
                 const reader = new FileReader();
                 reader.onload = function(e) {
-                    // Set the uploaded image as the source for the preview
                     const previewImg = document.getElementById('preview-poster');
                     previewImg.src = e.target.result;
                 };
@@ -594,12 +591,19 @@
 
         // Update Booking ID and QR Code simultaneously
         function updateBooking(newValue) {
-            // Update the text label
-            updateText('preview-booking', 'BOOKING ID: ' + newValue);
+            const bookingText = document.getElementById('preview-booking');
+            bookingText.innerText = 'BOOKING ID: ' + newValue;
             
-            // Update the QR Code image source to encode the new text
             const qrImg = document.getElementById('preview-qr-img');
             qrImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(newValue)}&margin=0`;
+        }
+
+        // Reset Text to Default
+        function resetText() {
+            document.getElementById('preview-title').innerText = "itllu Arjuna";
+            document.getElementById('preview-details').innerHTML = "Telugu, 2D<br>Fri, 13 Sep | 11:00 AM<br>Sree Ramana Gold 4k Dolby 7.1,Amberpet, Hyderabad";
+            document.getElementById('edit-booking').value = "WMD5XTQ";
+            updateBooking("WMD5XTQ");
         }
 
         // DOWNLOAD LOGIC
@@ -607,18 +611,24 @@
             const btn = document.querySelector('.download-btn');
             const exportArea = document.getElementById('export-area');
             
+            // Remove the editing borders before taking a screenshot
+            const editables = document.querySelectorAll('[contenteditable="true"]');
+            editables.forEach(el => {
+                el.style.borderColor = 'transparent';
+                el.style.backgroundColor = 'transparent';
+            });
+
             // Change button state
             btn.innerText = "⏳ Generating...";
             btn.disabled = true;
 
             // Use html2canvas to render the element
             html2canvas(exportArea, {
-                scale: 2, // 2x scale for high resolution
-                useCORS: true, // Crucial for loading external images
+                scale: 2, 
+                useCORS: true, 
                 backgroundColor: "#d3d4d6",
                 logging: false
             }).then(canvas => {
-                // Create an anchor tag to trigger download
                 const link = document.createElement('a');
                 link.download = 'ticket-9x16.png';
                 link.href = canvas.toDataURL('image/png');
@@ -636,4 +646,4 @@
         }
     </script>
 </body>
-    </html>
+</html>
