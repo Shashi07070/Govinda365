@@ -79,12 +79,14 @@
         }
 
         .input-row input[type="text"],
-        .input-row textarea {
+        .input-row textarea,
+        .input-row input[type="file"] {
             padding: 8px;
             border: 1px solid #ccc;
             border-radius: 4px;
             font-family: inherit;
-            font-size: 14px;
+            font-size: 13px;
+            width: 100%;
         }
 
         .input-row input[type="color"] {
@@ -195,12 +197,12 @@
             position: relative;
         }
 
+        /* --- FIXED POSTER SIZE --- */
         .poster {
             width: 75px;
             height: 105px;
             border-radius: 8px;
-            object-fit: cover;
-            flex-shrink: 0;
+            flex-shrink: 0; /* Prevents flexbox from shrinking it */
             position: relative;
             background-color: #300;
             overflow: hidden;
@@ -209,7 +211,8 @@
         .poster img {
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: cover; /* This ensures uploaded images fit perfectly without stretching */
+            display: block;
         }
 
         .poster-overlay {
@@ -232,7 +235,7 @@
             display: flex;
             flex-direction: column;
             gap: 4px;
-            padding-right: 20px; /* Space for side text */
+            padding-right: 20px;
         }
 
         .movie-title {
@@ -421,9 +424,11 @@
                 <label>Movie Details</label>
                 <textarea id="edit-details" oninput="updateText('preview-details', this.value)">Telugu, 2D<br>Fri, 13 Sep | 11:00 AM<br>Sree Ramana Gold 4k Dolby 7.1,Amberpet, Hyderabad</textarea>
             </div>
+            
+            <!-- NEW UPLOAD SECTION -->
             <div class="input-row">
-                <label>Poster Image URL</label>
-                <input type="text" id="edit-poster" value="https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?q=80&w=200&auto=format&fit=crop" oninput="updateImage('preview-poster', this.value)">
+                <label>Upload Movie Image (Auto-resizes)</label>
+                <input type="file" id="upload-poster" accept="image/*" onchange="handleImageUpload(event)">
             </div>
         </div>
 
@@ -475,7 +480,6 @@
                 <div class="header">
                     <div class="header-title">
                         Your Ticket 
-                        <!-- Changed icon to match new screenshot -->
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
                     </div>
                     <div class="close-btn">&times;</div>
@@ -484,8 +488,8 @@
                 <div class="ticket-card">
                     <div class="ticket-top">
                         <div class="poster">
+                            <!-- Default image source -->
                             <img id="preview-poster" src="https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?q=80&w=200&auto=format&fit=crop" alt="Movie Poster" crossorigin="anonymous">
-                            <!-- Added Play triangle icon -->
                             <div class="poster-overlay">
                                 <svg width="8" height="8" viewBox="0 0 24 24" fill="white"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
                                 Watch Trailer
@@ -494,7 +498,6 @@
                         
                         <div class="movie-info">
                             <div class="movie-title" id="preview-title">itllu Arjuna</div>
-                            <!-- Updated default text here -->
                             <div class="movie-details" id="preview-details">
                                 Telugu, 2D<br>
                                 Fri, 13 Sep | 11:00 AM<br>
@@ -515,7 +518,6 @@
                         
                         <div class="seat-info">
                             <div class="ticket-count">1 Ticket(s)</div>
-                            <!-- Updated default seat info here -->
                             <div class="seat-name" id="preview-seat">SREE RAMANA GOLD 4K</div>
                             <div class="seat-type" id="preview-seat-type">BALCONY-F-20 - 21</div>
                             <div class="booking-id" id="preview-booking">BOOKING ID: WMD5XTQ</div>
@@ -526,7 +528,6 @@
 
                     <div class="ticket-bottom">
                         <span>Total Amount</span>
-                        <!-- Updated default price here -->
                         <span class="total-amount" id="preview-amount">₹ 349.56</span>
                     </div>
                 </div>
@@ -534,7 +535,6 @@
                 <div class="reward-card">
                     <div class="reward-title">You've won 1 Reward!</div>
                     <div class="reward-inner">
-                        <!-- Replaced emoji with a closer SVG representation -->
                         <svg width="50" height="50" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <rect x="20" y="40" width="60" height="50" fill="#F5B041" rx="5"/>
                             <rect x="15" y="35" width="70" height="15" fill="#F1C40F" rx="3"/>
@@ -573,11 +573,17 @@
             }
         }
 
-        // Update image sources
-        function updateImage(elementId, newSrc) {
-            const element = document.getElementById(elementId);
-            if (element) {
-                element.src = newSrc;
+        // Handle File Upload for Poster
+        function handleImageUpload(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    // Set the uploaded image as the source for the preview
+                    const previewImg = document.getElementById('preview-poster');
+                    previewImg.src = e.target.result;
+                };
+                reader.readAsDataURL(file);
             }
         }
 
@@ -608,7 +614,7 @@
             // Use html2canvas to render the element
             html2canvas(exportArea, {
                 scale: 2, // 2x scale for high resolution
-                useCORS: true, // Crucial for loading external images (like the QR code and poster)
+                useCORS: true, // Crucial for loading external images
                 backgroundColor: "#d3d4d6",
                 logging: false
             }).then(canvas => {
@@ -630,4 +636,4 @@
         }
     </script>
 </body>
-                        </html>
+    </html>
